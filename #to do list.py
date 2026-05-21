@@ -1,0 +1,16 @@
+#to do list 
+
+monday = ('buy bread', 'go to the gym', 'call mom')
+tuesday = ('go to the bank', 'do laundry', 'clean room')
+wednesday =('go to the park', 'read a book', 'watch a movie')
+thursday = ('go to the doctor', 'pay bills', 'cook dinner')
+friday = ('go to the beach', 'have a picnic', 'go to a concert')
+saturday = ('go hiking', 'visit a museum', 'go to a party')
+sunday = ('go to church', 'have a family dinner', 'relax at home')
+print('monday' + str(monday))
+print('tuesday' + str(tuesday))
+print('wednesday' + str(wednesday))
+print('thursday' + str(thursday))
+print('friday' + str(friday))
+print('saturday' + str(saturday))
+print('sunday: ' + str(sunday))
