@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 from db import init_db, create_user, authenticate
 import banking_system
+import password_generator
 
 
 def check_login():
@@ -28,6 +29,10 @@ def check_login():
     else:
         messagebox.showerror("Login", "Invalid username or password")
         status_var.set("Login failed")
+
+
+def fill_generated_password(pw):
+    password_var.set(pw)
 
 
 def signup():
@@ -70,9 +75,12 @@ login_btn.grid(row=2, column=0, pady=10, padx=5)
 signup_btn = tk.Button(frame, text="Sign Up", width=15, command=signup, font=("Arial", 11))
 signup_btn.grid(row=2, column=1, pady=10, padx=5)
 
+password_gen_btn = tk.Button(frame, text="Generate Password", width=15, command=lambda: password_generator.open_password_generator(root, callback=fill_generated_password), font=("Arial", 11))
+password_gen_btn.grid(row=3, column=0, pady=5, padx=5, columnspan=2)
+
 status_var = tk.StringVar()
 status_label = tk.Label(frame, textvariable=status_var, fg="green", font=("Arial", 10))
-status_label.grid(row=3, column=0, columnspan=2)
+status_label.grid(row=4, column=0, columnspan=2)
 
 # allow Enter to submit
 root.bind('<Return>', lambda event: check_login())
