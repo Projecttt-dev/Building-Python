@@ -3,7 +3,6 @@ import tkinter as tk
 from tkinter import messagebox
 from db import init_db, create_user, authenticate
 import banking_system
-import expenses_tracker
 
 
 def check_login():
@@ -21,16 +20,11 @@ def check_login():
             if str(info.get('account_holder')).lower() == user.lower():
                 matched_acc = acc_num
                 break
-        # open banking window; pass account if found so it loads automatically
+        # open banking window, pass account if found so it loads automatically
         try:
             banking_system.open_bank_window(root, account_number=matched_acc)
         except Exception as e:
             messagebox.showerror('Banking', f'Unable to open banking window: {e}')
-        # open the expense tracker for this user
-        try:
-            expenses_tracker.open_expense_tracker(root, username=user)
-        except Exception as e:
-            messagebox.showerror('Expenses', f'Unable to open expense tracker: {e}')
     else:
         messagebox.showerror("Login", "Invalid username or password")
         status_var.set("Login failed")

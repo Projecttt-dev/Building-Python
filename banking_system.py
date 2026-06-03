@@ -120,6 +120,24 @@ def open_bank_window(parent=None, account_number=None):
     status_label = tk.Label(frame, textvariable=status_var, fg='green')
     status_label.grid(row=4, column=0, columnspan=3, sticky='w')
 
+    def open_expenses_from_bank():
+        # import here to avoid top-level circular imports
+        try:
+            import expenses_tracker
+        except Exception as e:
+            messagebox.showerror('Expenses', f'Cannot open expenses module: {e}')
+            return
+        username = None
+        if hasattr(frame, 'account'):
+            username = frame.account.account_holder
+        try:
+            expenses_tracker.open_expense_tracker(win, username=username)
+        except Exception as e:
+            messagebox.showerror('Expenses', f'Unable to open expense tracker: {e}')
+
+    expenses_btn = tk.Button(frame, text='Open Expenses', command=open_expenses_from_bank, width=15)
+    expenses_btn.grid(row=3, column=2, padx=6)
+
     # focus
     acc_entry.focus()
 
